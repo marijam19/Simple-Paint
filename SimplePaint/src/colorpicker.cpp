@@ -8,19 +8,19 @@ ColorPicker::ColorPicker(QColor* primary, QColor* secondary, QImage* img)
     , mySecondary(secondary)
 {}
 
-ColorPicker::~ColorPicker(){}
+ColorPicker::~ColorPicker() = default;
 
 /* mouse events */
-void ColorPicker::mouseClicked(QMouseEvent *event) { event->ignore(); return; }
+void ColorPicker::mouseClicked(QMouseEvent *event) { event->ignore(); }
 
-void ColorPicker::mouseMoved(QMouseEvent *event) { event->ignore(); return; }
+void ColorPicker::mouseMoved(QMouseEvent *event) { event->ignore(); }
 
 void ColorPicker::mouseReleased(QMouseEvent *event) {
     pickerButton = event->button();
     paint(event->pos());
 }
 
-void ColorPicker::setWidth(const int width) {Q_UNUSED(width) return; }
+void ColorPicker::setWidth(const int width) {Q_UNUSED(width) }
 
 /* colorpicker's logic */
 void ColorPicker::paint(QPoint endPoint) {

@@ -70,7 +70,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    void resizeImage(QImage *img, const QSize &newSize);
+    static void resizeImage(QImage *img, const QSize &newSize);
     void cropImage();
 
     bool modified;

@@ -6,7 +6,7 @@ Brush::Brush(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Brush::~Brush(){}
+Brush::~Brush() = default;
 
 /* mouse events */
 void Brush::mouseClicked(QMouseEvent *event) {
@@ -15,7 +15,7 @@ void Brush::mouseClicked(QMouseEvent *event) {
 }
 
 void Brush::mouseMoved(QMouseEvent *event) {
-    if (event->buttons() & Qt::LeftButton)
+    if ((event->buttons() & Qt::LeftButton) != 0U)
         paint(event->pos());
 }
 

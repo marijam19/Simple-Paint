@@ -5,7 +5,7 @@ Rect::Rect(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Rect::~Rect(){}
+Rect::~Rect() = default;
 
 /* mouse events */
 void Rect::mouseClicked(QMouseEvent *event) {

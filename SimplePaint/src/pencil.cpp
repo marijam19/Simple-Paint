@@ -6,7 +6,7 @@ Pencil::Pencil(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Pencil::~Pencil() {}
+Pencil::~Pencil() = default;
 
 /* mouse events */
 void Pencil::mouseClicked(QMouseEvent *event) {
@@ -15,7 +15,7 @@ void Pencil::mouseClicked(QMouseEvent *event) {
 }
 
 void Pencil::mouseMoved(QMouseEvent *event) {
-    if (event->buttons() & Qt::LeftButton)
+    if ((event->buttons() & Qt::LeftButton) != 0U)
         paint(event->pos());
 }
 

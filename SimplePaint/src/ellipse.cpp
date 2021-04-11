@@ -6,7 +6,7 @@ Ellipse::Ellipse(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Ellipse::~Ellipse(){}
+Ellipse::~Ellipse() = default;
 
 /* mouse events */
 void Ellipse::mouseClicked(QMouseEvent *event) {

@@ -5,7 +5,7 @@ Triangle::Triangle(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Triangle::~Triangle(){}
+Triangle::~Triangle() = default;
 
 /* mouse events */
 void Triangle::mouseClicked(QMouseEvent *event) {

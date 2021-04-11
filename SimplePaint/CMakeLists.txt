@@ -9,6 +9,8 @@ set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard,readability-*,-readability-braces-around-statements,-readability-magic-numbers,-readability-else-after-return,-clang-analyzer-optin.*")
+
 find_package(Qt5 COMPONENTS Widgets Core Gui)
 
 set(RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/icons.qrc)

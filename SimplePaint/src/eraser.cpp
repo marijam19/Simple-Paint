@@ -5,7 +5,7 @@ Eraser::Eraser(QColor* color, int width, QImage* img)
     : Tool::Tool(color, width,img)
 {}
 
-Eraser::~Eraser(){}
+Eraser::~Eraser() = default;
 
 /* mouse events */
 void Eraser::mouseClicked(QMouseEvent *event) {
@@ -14,7 +14,7 @@ void Eraser::mouseClicked(QMouseEvent *event) {
 }
 
 void Eraser::mouseMoved(QMouseEvent *event) {
-    if (event->buttons() & Qt::LeftButton)
+    if ((event->buttons() & Qt::LeftButton) != 0U)
         paint(event->pos());
 }
 

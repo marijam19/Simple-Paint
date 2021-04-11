@@ -1,23 +1,20 @@
 #include "headers/tool.h"
 
 Tool::Tool(QColor* color, const int width, QImage* img)
-    : QObject()
-    , myColor(color)
+    : myColor(color)
     , myWidth(width)
     , image(img)
 {}
 
 Tool::Tool(QColor* color, QImage* img)
-    : QObject()
-    , myColor(color)
+    : myColor(color)
     , image(img)
 {}
 
 Tool::Tool(QImage* img)
-    : QObject()
-    , myColor(nullptr)
+    : myColor(nullptr)
     , myWidth(0)
     , image(img)
 {}
 
-Tool::~Tool() {}
+Tool::~Tool() = default;

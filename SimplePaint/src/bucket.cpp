@@ -7,19 +7,19 @@ Bucket::Bucket(QColor* color, QImage* img)
     :Tool::Tool(color, img)
 {}
 
-Bucket::~Bucket() {}
+Bucket::~Bucket() = default;
 
 /* mouse events */
-void Bucket::mouseClicked(QMouseEvent *event) { event->ignore(); return; }
+void Bucket::mouseClicked(QMouseEvent *event) { event->ignore(); }
 
-void Bucket::mouseMoved(QMouseEvent *event) { event->ignore(); return; }
+void Bucket::mouseMoved(QMouseEvent *event) { event->ignore(); }
 
 void Bucket::mouseReleased(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
         paint(event->pos());
 }
 
-void Bucket::setWidth(const int width) { Q_UNUSED(width) return; }
+void Bucket::setWidth(const int width) { Q_UNUSED(width) }
 
 /* bucket's logic */
 void Bucket::paint(QPoint endPoint) {

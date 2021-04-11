@@ -6,7 +6,7 @@ Line::Line(QColor* color, int width, QImage* img)
     :Tool::Tool(color, width, img)
 {}
 
-Line::~Line() {}
+Line::~Line() = default;
 
 /* mouse events */
 void Line::mouseClicked(QMouseEvent *event) {

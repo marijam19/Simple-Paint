@@ -68,8 +68,6 @@ void image::newSheet() {
     crop = false;
     tool = allTools.at("pencil");
     setMinimumSize(img.size());
-
-    return;
 }
 
 /* open functionality's logic */
