@@ -3,26 +3,25 @@
 
 #include "headers/tool.h"
 #include <QInputDialog>
+#include <QObject>
 
-class Brush : public Tool
-{
-    Q_OBJECT
-public:
-    Brush(QColor*, int, QImage*);
+class Brush : public Tool {
+  Q_OBJECT
+ public:
+  Brush(QColor*, int, QImage*);
 
-    ~Brush() override;
+  ~Brush() override;
 
-    void paint(QPoint) override;
-    void mouseMoved(QMouseEvent *) override;
-    void mouseClicked(QMouseEvent *) override;
-    void mouseReleased(QMouseEvent *) override;
+  void paint(QPoint) override;
+  void mouseMoved(QMouseEvent*) override;
+  void mouseClicked(QMouseEvent*) override;
+  void mouseReleased(QMouseEvent*) override;
 
-    int penWidth() const;
-    void setWidth(const int width) override;
+  int penWidth() const;
+  void setWidth(const int width) override;
 
-
-private:
-    QPoint lastPoint;
+ private:
+  QPoint lastPoint;
 };
 
-#endif // BRUSH_H
+#endif  // BRUSH_H

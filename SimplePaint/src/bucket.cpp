@@ -3,63 +3,66 @@
 #include <memory>
 #include "headers/bucket.h"
 
-Bucket::Bucket(QColor* color, QImage* img)
-    :Tool::Tool(color, img)
-{}
+Bucket::Bucket(QColor* color, QImage* img) : Tool::Tool(color, img) {}
 
 Bucket::~Bucket() = default;
 
 /* mouse events */
-void Bucket::mouseClicked(QMouseEvent *event) { event->ignore(); }
-
-void Bucket::mouseMoved(QMouseEvent *event) { event->ignore(); }
-
-void Bucket::mouseReleased(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton)
-        paint(event->pos());
+void Bucket::mouseClicked(QMouseEvent* event) {
+  event->ignore();
 }
 
-void Bucket::setWidth(const int width) { Q_UNUSED(width) }
+void Bucket::mouseMoved(QMouseEvent* event) {
+  event->ignore();
+}
+
+void Bucket::mouseReleased(QMouseEvent* event) {
+  if(event->button() == Qt::LeftButton)
+    paint(event->pos());
+}
+
+void Bucket::setWidth(const int width) {
+  Q_UNUSED(width)
+}
 
 /* bucket's logic */
 void Bucket::paint(QPoint endPoint) {
-
-    auto color = image->pixelColor(endPoint);
-    colorFill(endPoint, color);
+  auto color = image->pixelColor(endPoint);
+  colorFill(endPoint, color);
 }
 
 /* Color pixels inside of some polygon */
 void Bucket::colorFill(QPoint startPoint, QColor color) {
-    auto presentColor = image->pixelColor(startPoint);
+  auto presentColor = image->pixelColor(startPoint);
 
-    if(presentColor == *myColor)
-         return;
+  if(presentColor == *myColor)
+    return;
 
-    std::shared_ptr<std::stack<QPoint>>
-            pointStack = std::make_shared<std::stack<QPoint>>();
+  std::shared_ptr<std::stack<QPoint>> pointStack =
+      std::make_shared<std::stack<QPoint>>();
 
-    pointStack->push(startPoint);
+  pointStack->push(startPoint);
 
-    while(!pointStack->empty()) {
-        auto topPoint = pointStack->top();
-        pointStack->pop();
+  while(!pointStack->empty()) {
+    auto topPoint = pointStack->top();
+    pointStack->pop();
 
-        image->setPixelColor(topPoint, *myColor);
+    image->setPixelColor(topPoint, *myColor);
 
-        auto x = topPoint.x();
-        auto y = topPoint.y();
+    auto x = topPoint.x();
+    auto y = topPoint.y();
 
-        if(x > 0 && image->pixelColor(x-1, y) == color) {
-           pointStack->push(QPoint(x-1, y));
-        }
-        if(y > 0 && image->pixelColor(x, y-1) == color) {
-            pointStack->push(QPoint(x, y-1));
-        }
-        if(x < image->size().width()-1 && image->pixelColor(x+1, y) == color) {
-            pointStack->push(QPoint(x+1, y));
-        }
-        if(y < image->size().height()-1 && image->pixelColor(x, y+1) == color) {
-            pointStack->push(QPoint(x, y+1));
-        }
+    if(x > 0 && image->pixelColor(x - 1, y) == color) {
+      pointStack->push(QPoint(x - 1, y));
     }
+    if(y > 0 && image->pixelColor(x, y - 1) == color) {
+      pointStack->push(QPoint(x, y - 1));
+    }
+    if(x < image->size().width() - 1 && image->pixelColor(x + 1, y) == color) {
+      pointStack->push(QPoint(x + 1, y));
+    }
+    if(y < image->size().height() - 1 && image->pixelColor(x, y + 1) == color) {
+      pointStack->push(QPoint(x, y + 1));
+    }
+  }
 }

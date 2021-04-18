@@ -7,27 +7,25 @@
 #include <QDebug>
 #include "headers/tool.h"
 
-class Ellipse : public Tool
-{
-    Q_OBJECT
-public:
-    Ellipse(QColor*, int, QImage*);
+class Ellipse : public Tool {
+  Q_OBJECT
+ public:
+  Ellipse(QColor*, int, QImage*);
 
-    ~Ellipse() override;
+  ~Ellipse() override;
 
-    void paint(QPoint) override;
-    void mouseMoved(QMouseEvent *) override;
-    void mouseClicked(QMouseEvent *) override;
-    void mouseReleased(QMouseEvent *) override;
+  void paint(QPoint) override;
+  void mouseMoved(QMouseEvent*) override;
+  void mouseClicked(QMouseEvent*) override;
+  void mouseReleased(QMouseEvent*) override;
 
-    void setWidth(const int width) override;
+  void setWidth(const int width) override;
 
-private:
-    QPoint lastPoint;
-    QImage tmp;
-    QImage localCopy;
-    bool finallDrawing;
+ private:
+  QPoint lastPoint;
+  QImage tmp;
+  QImage localCopy;
+  bool finallDrawing;
 };
 
-
-#endif // Ellipse_H
+#endif  // Ellipse_H

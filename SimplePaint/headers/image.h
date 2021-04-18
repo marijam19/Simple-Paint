@@ -28,65 +28,64 @@
 #include "headers/rect.h"
 #include "headers/triangle.h"
 
-class image: public QWidget {
+class image : public QWidget {
+  Q_OBJECT
 
-    Q_OBJECT
+ public:
+  image(QWidget* parent = nullptr);
+  ~image() override;
 
-public:
-    image(QWidget *parent = nullptr);
-    ~image() override;
+  bool isModified() const { return modified; }
+  QColor penColor() const { return primaryColor; }
+  int penWidth() const { return myWidth; }
+  QImage getImage() const { return img; }
 
-    bool isModified() const { return modified; }
-    QColor penColor() const { return primaryColor; }
-    int penWidth() const { return myWidth; }
-    QImage getImage() const { return img; }
+  std::stack<QImage> imagesUndo;
+  std::stack<QImage> imagesRedo;
+ signals:
+  void activatedUndo();
 
-    std::stack<QImage> imagesUndo;
-    std::stack<QImage> imagesRedo;
-signals:
-    void activatedUndo();
+ public slots:
+  void clearImage();
+  void setToolColor();
+  void setBrushWidth();
+  void setTool(QString nameOfTool);
 
-public slots:
-    void clearImage();
-    void setToolColor();
-    void setBrushWidth();
-    void setTool(QString nameOfTool);
+  bool openImage(const QString& fileName);
+  bool saveAsImage(const QString& filename, const char* fileFormat);
+  void needToCrop();
+  void scaleImageZoomIn();
+  void scaleImageZoomOut();
+  void undoFunc();
+  void redoFunc();
+  void newSheet();
+  void resizeCurrentImg();
 
-    bool openImage(const QString &fileName);
-    bool saveAsImage(const QString &filename, const char *fileFormat);
-    void needToCrop();
-    void scaleImageZoomIn();
-    void scaleImageZoomOut();
-    void undoFunc();
-    void redoFunc();
-    void newSheet();
-    void resizeCurrentImg();
+ protected:
+  void mousePressEvent(QMouseEvent* event) override;
+  void mouseMoveEvent(QMouseEvent* event) override;
+  void mouseReleaseEvent(QMouseEvent* event) override;
 
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+  void paintEvent(QPaintEvent* event) override;
 
-    void paintEvent(QPaintEvent *event) override;
+ private:
+  static void resizeImage(QImage* img, const QSize& newSize);
+  void cropImage();
 
-private:
-    static void resizeImage(QImage *img, const QSize &newSize);
-    void cropImage();
+  bool modified;
+  bool whiteBackground;
 
-    bool modified;
-    bool whiteBackground;
-
-    int myWidth;
-    int scaleFactor;
-    QColor primaryColor;
-    QColor secondaryColor;
-    bool has_image;
-    bool crop;
-    QPoint startPoint;
-    QPoint finishPoint;
-    QImage img;
-    Tool *tool;
-    std::map<QString, Tool*> allTools;
+  int myWidth;
+  int scaleFactor;
+  QColor primaryColor;
+  QColor secondaryColor;
+  bool has_image;
+  bool crop;
+  QPoint startPoint;
+  QPoint finishPoint;
+  QImage img;
+  Tool* tool;
+  std::map<QString, Tool*> allTools;
 };
 
-#endif // IMAGE_H
+#endif  // IMAGE_H

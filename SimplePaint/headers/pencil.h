@@ -3,23 +3,22 @@
 
 #include "headers/tool.h"
 
-class Pencil : public Tool
-{
-    Q_OBJECT
-public:
-    Pencil(QColor*, int, QImage*);
+class Pencil : public Tool {
+  Q_OBJECT
+ public:
+  Pencil(QColor*, int, QImage*);
 
-    ~Pencil() override;
+  ~Pencil() override;
 
-    void paint(QPoint) override;
-    void mouseMoved(QMouseEvent *) override;
-    void mouseClicked(QMouseEvent *) override;
-    void mouseReleased(QMouseEvent *) override;
+  void paint(QPoint) override;
+  void mouseMoved(QMouseEvent*) override;
+  void mouseClicked(QMouseEvent*) override;
+  void mouseReleased(QMouseEvent*) override;
 
-    void setWidth(const int width) override;
+  void setWidth(const int width) override;
 
-private:
-    QPoint lastPoint;
+ private:
+  QPoint lastPoint;
 };
 
-#endif // PENCIL_H
+#endif  // PENCIL_H

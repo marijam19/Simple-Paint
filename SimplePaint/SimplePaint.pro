@@ -8,6 +8,8 @@ TEMPLATE = app
 CONFIG += c++17 #eventualno da se stavi 14
 
 QMAKE_CXXFLAGS += -std=c++17
+QMAKE_CXXFLAGS += --coverage
+QMAKE_LFLAGS += --coverage
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
